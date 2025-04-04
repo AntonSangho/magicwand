@@ -18,22 +18,25 @@
 
 ![code](/img/block.png)
 
-## 텍스트코딩 (JavaScript)
+## 텍스트코딩 (Python)
 
-```javascript
-input.onGesture(Gesture.Shake, function () {
-    music.play(music.builtinPlayableSoundEffect(soundExpression.giggle), music.PlaybackMode.InBackground)
-    // 랜덤 색상 생성 (빨강, 초록, 파랑 값을 랜덤으로 지정)
+```python
+def on_gesture_shake():
+    global random_color
+    music.play(music.builtin_playable_sound_effect(soundExpression.giggle),
+        music.PlaybackMode.IN_BACKGROUND)
+    # 랜덤 색상 생성 (빨강, 초록, 파랑 값을 랜덤으로 지정)
     random_color = neopixel.rgb(randint(0, 255), randint(0, 255), randint(0, 255))
-    // 모든 네오픽셀에 랜덤 색상 적용
-    strip.showColor(random_color)
+    # 모든 네오픽셀에 랜덤 색상 적용
+    strip.show_color(random_color)
     basic.pause(2000)
     strip.clear()
     strip.show()
     basic.pause(200)
-})
-let random_color = 0
-let strip: neopixel.Strip = null
+input.on_gesture(Gesture.SHAKE, on_gesture_shake)
+
+random_color = 0
+strip: neopixel.Strip = None
 strip = neopixel.create(DigitalPin.P1, 8, NeoPixelMode.RGB)
 ```
 
